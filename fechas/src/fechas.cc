@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 int main(int argc, char* argv[]) {
     if (argc == 1) {
@@ -34,5 +35,12 @@ int main(int argc, char* argv[]) {
             int current_number{stoi(testigo)};
             numeros.push_back(current_number);
         }
-        vector_fechas.push_back(Fecha(numeros[0], numeros[1], numeros[2]));
+        Fecha fecha_testigo = Fecha(numeros[0],numeros[1],numeros[2]);
+        vector_fechas.push_back(fecha_testigo);
+    } 
+    std::sort(vector_fechas.begin(), vector_fechas.end());
+    for(size_t i = 0; i < vector_fechas.size(); ++i) {
+        salida << vector_fechas[i].GetDia() << "/" << vector_fechas[i].GetMes()
+        <<"/"<< vector_fechas[i].GetAnyo() << std::endl;
+    }
 }
